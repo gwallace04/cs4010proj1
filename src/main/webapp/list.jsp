@@ -1,5 +1,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="edu.umsl.math.beans.*"%>
+<%@ page import="java.time.format.DateTimeFormatter"%>
+<%@ page import="java.time.LocalDateTime"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -33,8 +36,16 @@
 </script>
 </head>
 <body>
-    Today's Date: <%= (new java.util.Date()).toLocaleString() %>
-	<%
+    <!--   Today's Date: <%= java.time.LocalDateTime.now() %> -->
+    
+    Current date and time:
+    <%
+      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+      LocalDateTime now = LocalDateTime.now();
+      out.print(dtf.format(now)); 
+    %>
+    
+    <%
 		List<Problem> myproblist = (List<Problem>) request.getAttribute("problist");
 	%>
 	<div class="container">
