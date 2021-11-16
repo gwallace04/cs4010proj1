@@ -33,6 +33,7 @@
 </script>
 </head>
 <body>
+    Today's Date: <%= (new java.util.Date()).toLocaleString() %>
 	<%
 		List<Problem> myproblist = (List<Problem>) request.getAttribute("problist");
 	%>
