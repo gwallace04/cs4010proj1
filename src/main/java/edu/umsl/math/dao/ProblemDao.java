@@ -11,6 +11,7 @@ import edu.umsl.math.beans.Problem;
 public class ProblemDao {
 	private Connection connection;
 	private PreparedStatement results;
+	private PreparedStatement total;
 
 	public ProblemDao() throws Exception {
 
@@ -19,6 +20,8 @@ public class ProblemDao {
 				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mathprobdb", "root", "");
 				results = connection.prepareStatement(
 						"SELECT pid, content, order_num " + "FROM problem ORDER BY order_num DESC");
+				total = connection.prepareStatement(
+						"SELECT count(*) row_count FROM problem");
 			} catch (Exception exception) {
 				exception.printStackTrace();
 				throw new UnavailableException(exception.getMessage());
@@ -45,5 +48,17 @@ public class ProblemDao {
 		}
 		
 		return problist;
+	}
+	
+	public int getTotalNumberOfProblems() throws SQLException {
+		int count = 0;
+		try {
+			ResultSet rs = total.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		return count;
 	}
 }

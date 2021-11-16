@@ -41,8 +41,10 @@ public class ListMathServlet extends HttpServlet {
 			probdao = new ProblemDao();
 
 			List<Problem> problist = probdao.getProblemList();
+			int total = probdao.getTotalNumberOfProblems();
 
 			request.setAttribute("problist", problist);
+			request.setAttribute("total", total);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

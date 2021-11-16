@@ -40,11 +40,17 @@
     
     Current date and time:
     <%
-      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
-      LocalDateTime now = LocalDateTime.now();
-      out.print(dtf.format(now)); 
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+    	LocalDateTime now = LocalDateTime.now();
+    	out.print(dtf.format(now)); 
     %>
     
+    <br/> Total number of questions:
+    <%
+    	Object total = request.getAttribute("total");
+    	out.print(total);
+    %>
+       
     <%
 		List<Problem> myproblist = (List<Problem>) request.getAttribute("problist");
 	%>
