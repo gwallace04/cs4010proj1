@@ -36,21 +36,22 @@
 </script>
 </head>
 <body>
-    <!--   Today's Date: <%= java.time.LocalDateTime.now() %> -->
-    
-    Current date and time:
+    <h2 align="center"> Current date and time: 
     <%
     	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
     	LocalDateTime now = LocalDateTime.now();
     	out.print(dtf.format(now)); 
     %>
+    </h2>
+        
+    <h2 align="center"> Total number of questions:
     
-    <br/> Total number of questions:
     <%
     	Object total = request.getAttribute("total");
     	out.print(total);
     %>
-       
+    </h2>
+    
     <%
 		List<Problem> myproblist = (List<Problem>) request.getAttribute("problist");
 	%>
